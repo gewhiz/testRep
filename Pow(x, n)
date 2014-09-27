@@ -1,1 +1,50 @@
 //Implement pow(x, n).
+
+
+public class Solution {
+    public static double pow(double x, int n) {
+        int k = 1;
+        double base = x;
+        if(n == 0)
+            return 1;
+        boolean isNeg= false;
+        boolean isT = false;
+        if(x<0 && n%2 == 1)
+        {
+            isT =true;
+        }
+        if(n < 0){
+            isNeg= true;
+            n=-n;
+        }
+        while(k<n-1)
+        {
+            base *= base;
+            if(base == 0.0 || base == 1.0)
+            {
+                if(isT)
+	            		return -base;
+            	return base;
+            }
+            k *=2;
+        }
+        
+        if(k == (n-1))
+        {
+            if(isNeg)
+        		return 1/(base*x);
+            return (base * x);
+        }
+        else
+        {
+            double nn = pow(x, n-k);
+            base *= nn;           
+        }
+        if(isT && base>0)
+            base = -base;
+        if(isNeg)
+            return 1/base;
+            
+        return base;
+    }
+}
