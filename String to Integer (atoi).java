@@ -32,53 +32,21 @@ public class Solution {
         {
             tr = tr.substring(1);
         }
-        if(tr.charAt(0)>'9' || tr.charAt(0) <'0')
-            return 0;
-        
         int len = tr.length();
         Integer res = 0;
         Integer w = 1;
         int i = 0;
         while(i < len)
         {
-           if(w.toString().length() == 11)
+            if(tr.charAt(i)<='9' && tr.charAt(i)>='0' )
             {
-                if(isNeg)
-                    return Integer.MIN_VALUE;
-                else
-                    return Integer.MAX_VALUE;
-            }
-            if(w.toString().length() == 10 && tr.charAt(i)<='9' && tr.charAt(i)>='0' )
-            {   
-                if(res> (Integer.MAX_VALUE/10) )
+                if(res> (Integer.MAX_VALUE/10) || (res == (Integer.MAX_VALUE/10) && tr.charAt(i)>'7'))
                 {
                     if(isNeg)
                         return Integer.MIN_VALUE;
                     else
                         return Integer.MAX_VALUE;
                 }
-                if(res == (Integer.MAX_VALUE/10))
-                {
-                    if(tr.charAt(i)<='7')
-                    {
-                        int k = Character.getNumericValue(tr.charAt(i));
-                        res = res*10+k;
-                        if(isNeg)
-                            return -res;
-                        else
-                            return res;
-                    }
-                    else
-                    {
-                        if(isNeg)
-                            return Integer.MIN_VALUE;
-                        else
-                            return Integer.MAX_VALUE;
-                    }
-                }
-            }
-            if(tr.charAt(i)<='9' && tr.charAt(i)>='0' )
-            {
                 int k = Character.getNumericValue(tr.charAt(i));
                 res = res*10+k;
                 w*=10;
