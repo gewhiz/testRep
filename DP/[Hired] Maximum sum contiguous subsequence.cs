@@ -16,42 +16,27 @@ class Solution {
   
   static int[] getMaxSlice(int[] A)
   {
-    int j = 0; 
-    int s = A[0];
-    int max = A[0];
-    int startInd = 0;
-    int endInd = 0;
-    for(int i = 1; i<A.Length; i++)
-    {
-        if(A[i]>=0)
-        {
-            if(s<0)
-            {
-                s = 0;
-                j = i;
-            }
-            s+=A[i];
-        }
-        else
-        {
-            if(A[i] > s+A[i]){
-                s = A[i];
-                j = i;
-            }
-            else
-            {
-                s +=A[i];
-            }
-        }
-      
-        if(s>max)
-        {
-            max = s;
-            startInd = j;
-            endInd = i;
-        }
-    }
-    return getSlice(A, startInd, endInd);
+     int j = 0; 
+	    int s = A[0];
+	    int max = A[0];
+	    int startInd = 0;
+	    int endInd = 0;
+	    for(int i = 1; i<A.length; i++)
+	    {
+	    	if(A[i] > s+A[i]){
+	    		s = A[i];
+	    		j = i;
+	    	}
+	    	else{
+	    		s += A[i];
+	    	}	        
+	        if(s>max){
+	            max = s;
+	            startInd = j;
+	            endInd = i;
+	        }
+	    }
+	    return getSlice(A, startInd, endInd);
   }
   
   static int[] getSlice(int[] A, int i, int j)
